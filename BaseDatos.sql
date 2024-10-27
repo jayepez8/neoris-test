@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS person (
     create_by VARCHAR(50) NOT NULL,
     create_date DATETIME NOT NULL,
     modified_by VARCHAR(50),
-    modified_date DATETIME,
+    modified_date DATETIME
 );
 
 -- Create table client that inherits from person
@@ -63,8 +63,6 @@ CREATE TABLE IF NOT EXISTS movements (
     FOREIGN KEY (account_id) REFERENCES account (account_id)
 );
 
-USE neoris_test;
-
 -- Insert data into person table
 INSERT INTO person (name, gender, age, identification, address, phone, create_by, create_date, modified_by, modified_date)
 VALUES 
@@ -74,8 +72,8 @@ VALUES
 -- Insert data into client table
 INSERT INTO client (person_id, password, status, create_by, create_date, modified_by, modified_date)
 VALUES 
-(1, 'password123', 'A', 'admin', NOW(), 'admin', NOW()),
-(2, 'password456', 'I', 'admin', DATE_SUB(NOW(), INTERVAL 3 DAY), 'admin', DATE_SUB(NOW(), INTERVAL 3 DAY));
+(1, 'password123', '1', 'admin', NOW(), 'admin', NOW()),
+(2, 'password456', '1', 'admin', DATE_SUB(NOW(), INTERVAL 3 DAY), 'admin', DATE_SUB(NOW(), INTERVAL 3 DAY));
 
 -- Insert data into account table
 INSERT INTO account (account_number, account_type, initial_balance, status, client_id, create_by, create_date, modified_by, modified_date)
