@@ -9,6 +9,7 @@ import com.neoris.clients.client.mapper.ClientMapper;
 import com.neoris.clients.client.repository.IClientRepository;
 import com.neoris.clients.client.service.IClientService;
 import com.neoris.clients.client.service.IPersonService;
+import com.neoris.clients.vo.ClientIntVo;
 import com.neoris.clients.vo.ClientPasswordVo;
 import com.neoris.clients.vo.ClientVo;
 import lombok.RequiredArgsConstructor;
@@ -54,6 +55,11 @@ public class ClientService implements IClientService {
     }
 
     @Override
+    public ClientIntVo findByIdentificationExt(String identification) {
+        return this.clientMapper.toClientIntVo(findByIdentification(identification));
+    }
+
+    @Override
     public ClientVo findClientVoByID(Integer clientID) {
         return this.clientMapper.toClientVo(findByID(clientID));
     }
@@ -65,10 +71,6 @@ public class ClientService implements IClientService {
         }
         try {
             Client client = this.clientMapper.toClient(clientVo);
-            Person person = client.getPerson();
-            person.setCreatedBy(clientVo.getCreatedBy());
-            Person personSave = this.personService.createPerson(person);
-            client.setPerson(personSave);
             Client clientSave = this.clientRepository.save(client);
             return this.clientMapper.toClientVo(clientSave);
         }catch (Exception e){
@@ -81,7 +83,6 @@ public class ClientService implements IClientService {
         Client existingClient = findByIdentification(clientVo.getIdentification());
         try {
             clientMapper.updateClientFromVo(clientVo, existingClient);
-            existingClient.setModifiedBy(clientVo.getCreatedBy());
             Client clientUpdated = clientRepository.save(existingClient);
             return this.clientMapper.toClientVo(clientUpdated);
         }catch (Exception e){

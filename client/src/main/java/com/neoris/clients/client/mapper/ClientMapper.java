@@ -1,6 +1,7 @@
 package com.neoris.clients.client.mapper;
 
 import com.neoris.clients.client.entity.Client;
+import com.neoris.clients.vo.ClientIntVo;
 import com.neoris.clients.vo.ClientVo;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -22,7 +23,6 @@ public interface ClientMapper {
 
     Collection<ClientVo> totoClientVoCollection(Collection<Client> clients);
 
-
     @Mapping(source = "name", target = "person.name")
     @Mapping(source = "identification", target = "person.identification")
     @Mapping(source = "address", target = "person.address")
@@ -33,4 +33,9 @@ public interface ClientMapper {
     @Mapping(source = "address", target = "person.address")
     @Mapping(source = "phone", target = "person.phone")
     void updateClientFromVo(ClientVo clientVo, @MappingTarget Client client);
+
+    @Mapping(source = "person.name", target = "name")
+    @Mapping(source = "person.identification", target = "identification")
+    @Mapping(source = "person.address", target = "address")
+    ClientIntVo toClientIntVo(Client client);
 }

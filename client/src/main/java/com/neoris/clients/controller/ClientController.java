@@ -1,6 +1,7 @@
 package com.neoris.clients.controller;
 
 import com.neoris.clients.client.service.IClientService;
+import com.neoris.clients.vo.ClientIntVo;
 import com.neoris.clients.vo.ClientPasswordVo;
 import com.neoris.clients.vo.ClientVo;
 import lombok.RequiredArgsConstructor;
@@ -35,8 +36,14 @@ public class ClientController {
     }
 
     @GetMapping("findByIdentification")
-    public ResponseEntity<ClientVo> findByID(@RequestParam() String identification){
+    public ResponseEntity<ClientVo> findByIdentification(@RequestParam() String identification){
         ClientVo response = this.clientService.findClientVoByIdentification(identification);
+        return ResponseEntity.ok().body(response);
+    }
+
+    @GetMapping("findByIdentificationExt")
+    public ResponseEntity<ClientIntVo> findByIdentificationExt(@RequestParam() String identification){
+        ClientIntVo response = this.clientService.findByIdentificationExt(identification);
         return ResponseEntity.ok().body(response);
     }
 

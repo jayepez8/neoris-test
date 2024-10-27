@@ -1,6 +1,7 @@
 package com.neoris.clients.client.service;
 
 import com.neoris.clients.client.entity.Client;
+import com.neoris.clients.vo.ClientIntVo;
 import com.neoris.clients.vo.ClientPasswordVo;
 import com.neoris.clients.vo.ClientVo;
 
@@ -18,6 +19,8 @@ public interface IClientService {
     Client findByIdentification(String identification);
 
     ClientVo findClientVoByIdentification(String identification);
+
+    ClientIntVo findByIdentificationExt(String identification);
 
     ClientVo findClientVoByID(Integer clientID);
 
