@@ -59,4 +59,9 @@ public class Person {
     @Column(name = "modified_date")
     @LastModifiedDate
     private LocalDateTime modifiedDate;
+
+    @PrePersist
+    public void prePersist() {
+        this.createdDate = LocalDateTime.now();
+    }
 }

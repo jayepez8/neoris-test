@@ -9,4 +9,6 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface IPersonRepository extends JpaRepository<Person, Integer> {
+
+    Boolean existsByIdentification(String identification);
 }

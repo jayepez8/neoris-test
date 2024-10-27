@@ -10,4 +10,6 @@ import java.util.Collection;
 public interface IPersonService {
 
     Collection<Person> findAll();
+    Boolean existsPerson(String identification);
+    Person createPerson(Person person);
 }

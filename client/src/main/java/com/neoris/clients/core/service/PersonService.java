@@ -22,6 +22,16 @@ public class PersonService implements IPersonService {
 
     @Override
     public Collection<Person> findAll() {
-        return personRepository.findAll();
+        return this.personRepository.findAll();
+    }
+
+    @Override
+    public Boolean existsPerson(String identification) {
+        return this.personRepository.existsByIdentification(identification);
+    }
+
+    @Override
+    public Person createPerson(Person person) {
+        return this.personRepository.save(person);
     }
 }
