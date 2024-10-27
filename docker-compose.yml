@@ -13,26 +13,29 @@ services:
     volumes:
       - ./BaseDatos.sql:/docker-entrypoint-initdb.d/BaseDatos.sql
 
-#  microservice1:
-#    build:
-#      context: ./microservice1
-#    environment:
-#      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/my_database
-#      SPRING_DATASOURCE_USERNAME: user
-#      SPRING_DATASOURCE_PASSWORD: user_password
-#    ports:
-#      - "8081:8081"
-#    depends_on:
-#      - db
+  neoris-client:
+    build:
+      context: ./client
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/neoris_test
+      SPRING_DATASOURCE_USERNAME: user
+      SPRING_DATASOURCE_PASSWORD: user_password
+    ports:
+      - "8081:8081"
+    depends_on:
+      - db
+    restart: always
 
-#  microservice2:
-#    build:
-#      context: ./microservice2
-#    environment:
-#      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/my_database
-#      SPRING_DATASOURCE_USERNAME: user
-#      SPRING_DATASOURCE_PASSWORD: user_password
-#    ports:
-#      - "8082:8082"
-#    depends_on:
-#      - db
+  neoris-transactions:
+    build:
+      context: ./transactions
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/neoris_test
+      SPRING_DATASOURCE_USERNAME: user
+      SPRING_DATASOURCE_PASSWORD: user_password
+      DOMAIN_NAME: http://neoris-client:8081
+    ports:
+      - "8082:8082"
+    depends_on:
+      - db
+    restart: always
