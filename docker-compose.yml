@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: neoris_test
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./BaseDatos.sql:/docker-entrypoint-initdb.d/BaseDatos.sql
+
+#  microservice1:
+#    build:
+#      context: ./microservice1
+#    environment:
+#      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/my_database
+#      SPRING_DATASOURCE_USERNAME: user
+#      SPRING_DATASOURCE_PASSWORD: user_password
+#    ports:
+#      - "8081:8081"
+#    depends_on:
+#      - db
+
+#  microservice2:
+#    build:
+#      context: ./microservice2
+#    environment:
+#      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/my_database
+#      SPRING_DATASOURCE_USERNAME: user
+#      SPRING_DATASOURCE_PASSWORD: user_password
+#    ports:
+#      - "8082:8082"
+#    depends_on:
+#      - db
