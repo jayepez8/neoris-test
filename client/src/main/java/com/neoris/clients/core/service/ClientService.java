@@ -16,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 
@@ -71,6 +72,10 @@ public class ClientService implements IClientService {
         }
         try {
             Client client = this.clientMapper.toClient(clientVo);
+            Person person = client.getPerson();
+            person.setCreatedBy(clientVo.getCreatedBy());
+            Person personSave = this.personService.createPerson(person);
+            client.setPerson(personSave);
             Client clientSave = this.clientRepository.save(client);
             return this.clientMapper.toClientVo(clientSave);
         }catch (Exception e){
@@ -83,6 +88,8 @@ public class ClientService implements IClientService {
         Client existingClient = findByIdentification(clientVo.getIdentification());
         try {
             clientMapper.updateClientFromVo(clientVo, existingClient);
+            existingClient.setModifiedBy(clientVo.getCreatedBy());
+            existingClient.setModifiedDate(LocalDateTime.now());
             Client clientUpdated = clientRepository.save(existingClient);
             return this.clientMapper.toClientVo(clientUpdated);
         }catch (Exception e){
@@ -95,6 +102,8 @@ public class ClientService implements IClientService {
         Client existingClient = findByIdentification(clientVo.getIdentification());
         try {
             existingClient.setPassword(clientVo.getPassword());
+            existingClient.setModifiedBy(clientVo.getCreatedBy());
+            existingClient.setModifiedDate(LocalDateTime.now());
             Client clientUpdated = clientRepository.save(existingClient);
             return this.clientMapper.toClientVo(clientUpdated);
         }catch (Exception e){
@@ -107,6 +116,7 @@ public class ClientService implements IClientService {
         Client existingClient = findByIdentification(identification);
         try {
             existingClient.setStatus(Boolean.FALSE);
+            existingClient.setModifiedDate(LocalDateTime.now());
             clientRepository.save(existingClient);
         }catch (Exception e){
             throw new PersistException("A problem occurred, the client could not be deleted");

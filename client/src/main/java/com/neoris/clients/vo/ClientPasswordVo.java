@@ -20,4 +20,6 @@ public class ClientPasswordVo {
     private String identification;
     @NotEmpty(message = "Password is required")
     private String password;
+    @NotEmpty(message = "Created By is required")
+    private String createdBy;
 }
