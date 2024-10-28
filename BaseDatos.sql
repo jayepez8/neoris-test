@@ -64,57 +64,73 @@ CREATE TABLE IF NOT EXISTS movements (
 );
 
 -- Insert data into person table
-INSERT INTO person (name, gender, age, identification, address, phone, create_by, create_date, modified_by, modified_date)
+INSERT INTO person (name, gender, age, identification, address, phone, create_by, create_date)
 VALUES 
-('Jon Snow', 'M', 30, 'ID00001', 'The Wall', '555-0001', 'admin', NOW(), 'admin', NOW()),
-('Daenerys Targaryen', 'F', 29, 'ID00002', 'Dragonstone', '555-0002', 'admin', DATE_SUB(NOW(), INTERVAL 7 DAY), 'admin', DATE_SUB(NOW(), INTERVAL 7 DAY)),
-('Tyrion Lannister', 'M', 39, 'ID00003', 'Casterly Rock', '555-0003', 'admin', DATE_SUB(NOW(), INTERVAL 10 DAY), 'admin', DATE_SUB(NOW(), INTERVAL 10 DAY)),
-('Arya Stark', 'F', 20, 'ID00004', 'Winterfell', '555-0004', 'admin', DATE_SUB(NOW(), INTERVAL 15 DAY), 'admin', DATE_SUB(NOW(), INTERVAL 15 DAY)),
-('Sansa Stark', 'F', 24, 'ID00005', 'Winterfell', '555-0005', 'admin', DATE_SUB(NOW(), INTERVAL 20 DAY), 'admin', DATE_SUB(NOW(), INTERVAL 20 DAY));
+('Jon Snow', 'M', 30, 'ID00001', 'The Wall', '555-0001', 'admin', '2024-10-01 10:00:00'),
+('Daenerys Targaryen', 'F', 29, 'ID00002', 'Dragonstone', '555-0002', 'admin', '2024-10-01 10:00:00'),
+('Tyrion Lannister', 'M', 39, 'ID00003', 'Casterly Rock', '555-0003', 'admin', '2024-10-01 10:00:00'),
+('Arya Stark', 'F', 20, 'ID00004', 'Winterfell', '555-0004', 'admin', '2024-10-01 10:00:00'),
+('Sansa Stark', 'F', 24, 'ID00005', 'Winterfell', '555-0005', 'admin', '2024-10-01 10:00:00');
 
 -- Insert data into client table
-INSERT INTO client (person_id, password, status, create_by, create_date, modified_by, modified_date)
+INSERT INTO client (person_id, password, status, create_by, create_date)
 VALUES 
-(1, 'password123', '1', 'admin', NOW(), 'admin', NOW()),
-(2, 'password456', '1', 'admin', DATE_SUB(NOW(), INTERVAL 7 DAY), 'admin', DATE_SUB(NOW(), INTERVAL 7 DAY)),
-(3, 'password789', '1', 'admin', DATE_SUB(NOW(), INTERVAL 10 DAY), 'admin', DATE_SUB(NOW(), INTERVAL 10 DAY)),
-(4, 'password111', '1', 'admin', DATE_SUB(NOW(), INTERVAL 15 DAY), 'admin', DATE_SUB(NOW(), INTERVAL 15 DAY)),
-(5, 'password222', '1', 'admin', DATE_SUB(NOW(), INTERVAL 20 DAY), 'admin', DATE_SUB(NOW(), INTERVAL 20 DAY));
+(1, 'password123', '1', 'admin', '2024-10-01 10:00:00'),
+(2, 'password456', '1', 'admin', '2024-10-01 10:00:00'),
+(3, 'password789', '1', 'admin', '2024-10-01 10:00:00'),
+(4, 'password111', '1', 'admin', '2024-10-01 10:00:00'),
+(5, 'password222', '1', 'admin', '2024-10-01 10:00:00');
 
 -- Insert data into account table
-INSERT INTO account (account_number, account_type, initial_balance, status, client_id, create_by, create_date, modified_by, modified_date)
+INSERT INTO account (account_number, account_type, initial_balance, status, client_id, create_by, create_date)
 VALUES 
-('ACC1001', 'Savings', 2500.00, '1', 1, 'admin', NOW(), 'admin', NOW()),
-('ACC1002', 'Checking', 1500.00, '1', 2, 'admin', DATE_SUB(NOW(), INTERVAL 7 DAY), 'admin', DATE_SUB(NOW(), INTERVAL 7 DAY)),
-('ACC1003', 'Savings', 3000.00, '1', 3, 'admin', DATE_SUB(NOW(), INTERVAL 10 DAY), 'admin', DATE_SUB(NOW(), INTERVAL 10 DAY)),
-('ACC1004', 'Checking', 4000.00, '1', 4, 'admin', DATE_SUB(NOW(), INTERVAL 15 DAY), 'admin', DATE_SUB(NOW(), INTERVAL 15 DAY)),
-('ACC1005', 'Savings', 5000.00, '1', 5, 'admin', DATE_SUB(NOW(), INTERVAL 20 DAY), 'admin', DATE_SUB(NOW(), INTERVAL 20 DAY));
+('ACC1001', 'Savings', 2500.00, '1', 1, 'admin', '2024-10-01 10:00:00'),
+('ACC1002', 'Checking', 1500.00, '1', 2, 'admin', '2024-10-01 10:00:00'),
+('ACC1003', 'Savings', 3000.00, '1', 3, 'admin', '2024-10-01 10:00:00'),
+('ACC1004', 'Checking', 4000.00, '1', 4, 'admin', '2024-10-01 10:00:00'),
+('ACC1005', 'Savings', 5000.00, '1', 5, 'admin','2024-10-01 10:00:00');
 
 -- Insert data into movements table
-INSERT INTO movements (date, movement_type, amount, balance, status, account_id, create_by, create_date, modified_by, modified_date)
+INSERT INTO movements (date, movement_type, amount, balance, status, account_id, create_by, create_date)
 VALUES 
 -- Movimientos para la cuenta 1 (Balance inicial: 2500.00)
-(DATE_SUB(NOW(), INTERVAL 1 DAY), 'Deposit', 1000.00, 3500.00, '1', 1, 'admin', NOW(), 'admin', NOW()),  -- 2500 + 1000 = 3500
-(DATE_SUB(NOW(), INTERVAL 2 DAY), 'Withdrawal', 200.00, 3300.00, '1', 1, 'admin', NOW(), 'admin', NOW()),  -- 3500 - 200 = 3300
-(DATE_SUB(NOW(), INTERVAL 3 DAY), 'Deposit', 500.00, 3800.00, '1', 1, 'admin', NOW(), 'admin', NOW()),     -- 3300 + 500 = 3800
-(DATE_SUB(NOW(), INTERVAL 4 DAY), 'Deposit', 400.00, 4200.00, '1', 1, 'admin', NOW(), 'admin', NOW()),     -- 3800 + 400 = 4200
+('2024-10-02 10:00:00', 'Deposit', 1000.00, 3500.00, '1', 1, 'admin', NOW()),  -- 2500 + 1000 = 3500
+('2024-10-17 10:00:00', 'Withdrawal', 200.00, 3300.00, '1', 1, 'admin', NOW()),  -- 3500 - 200 = 3300
+('2024-10-21 10:00:00', 'Deposit', 500.00, 3800.00, '1', 1, 'admin', NOW()),     -- 3300 + 500 = 3800
+('2024-10-25 10:00:00', 'Deposit', 400.00, 4200.00, '1', 1, 'admin', NOW()),     -- 3800 + 400 = 4200
 
 -- Movimientos para la cuenta 2 (Balance inicial: 1500.00)
-(DATE_SUB(NOW(), INTERVAL 5 DAY), 'Deposit', 700.00, 2200.00, '1', 2, 'admin', NOW(), 'admin', NOW()),     -- 1500 + 700 = 2200
-(DATE_SUB(NOW(), INTERVAL 6 DAY), 'Deposit', 1000.00, 3200.00, '1', 2, 'admin', NOW(), 'admin', NOW()),    -- 2200 + 1000 = 3200
-(DATE_SUB(NOW(), INTERVAL 7 DAY), 'Withdrawal', 300.00, 2900.00, '1', 2, 'admin', NOW(), 'admin', NOW()),  -- 3200 - 300 = 2900
+('2024-10-05 10:00:00', 'Deposit', 700.00, 2200.00, '1', 2, 'admin', NOW()),     -- 1500 + 700 = 2200
+('2024-10-10 10:00:00', 'Deposit', 1000.00, 3200.00, '1', 2, 'admin', NOW()),    -- 2200 + 1000 = 3200
+('2024-10-26 10:00:00', 'Withdrawal', 300.00, 2900.00, '1', 2, 'admin', NOW()),  -- 3200 - 300 = 2900
 
 -- Movimientos para la cuenta 3 (Balance inicial: 3000.00)
-(DATE_SUB(NOW(), INTERVAL 8 DAY), 'Withdrawal', 400.00, 2600.00, '1', 3, 'admin', NOW(), 'admin', NOW()),  -- 3000 - 400 = 2600
-(DATE_SUB(NOW(), INTERVAL 9 DAY), 'Deposit', 600.00, 3200.00, '1', 3, 'admin', NOW(), 'admin', NOW()),     -- 2600 + 600 = 3200
-(DATE_SUB(NOW(), INTERVAL 10 DAY), 'Withdrawal', 500.00, 2700.00, '1', 3, 'admin', NOW(), 'admin', NOW()), -- 3200 - 500 = 2700
+('2024-10-08 10:00:00', 'Withdrawal', 400.00, 2600.00, '1', 3, 'admin', NOW()),  -- 3000 - 400 = 2600
+('2024-10-23 10:00:00', 'Deposit', 600.00, 3200.00, '1', 3, 'admin', NOW()),     -- 2600 + 600 = 3200
+('2024-10-27 10:00:00', 'Withdrawal', 500.00, 2700.00, '1', 3, 'admin', NOW()), -- 3200 - 500 = 2700
 
 -- Movimientos para la cuenta 4 (Balance inicial: 4000.00)
-(DATE_SUB(NOW(), INTERVAL 11 DAY), 'Deposit', 800.00, 4800.00, '1', 4, 'admin', NOW(), 'admin', NOW()),    -- 4000 + 800 = 4800
-(DATE_SUB(NOW(), INTERVAL 12 DAY), 'Withdrawal', 200.00, 4600.00, '1', 4, 'admin', NOW(), 'admin', NOW()), -- 4800 - 200 = 4600
-(DATE_SUB(NOW(), INTERVAL 13 DAY), 'Deposit', 1200.00, 5800.00, '1', 4, 'admin', NOW(), 'admin', NOW()),   -- 4600 + 1200 = 5800
+('2024-10-03 10:00:00', 'Deposit', 800.00, 4800.00, '1', 4, 'admin', NOW()),    -- 4000 + 800 = 4800
+('2024-10-18 10:00:00', 'Withdrawal', 200.00, 4600.00, '1', 4, 'admin', NOW()), -- 4800 - 200 = 4600
+('2024-10-24 10:00:00', 'Deposit', 1200.00, 5800.00, '1', 4, 'admin', NOW()),   -- 4600 + 1200 = 5800
 
 -- Movimientos para la cuenta 5 (Balance inicial: 5000.00)
-(DATE_SUB(NOW(), INTERVAL 14 DAY), 'Withdrawal', 700.00, 4300.00, '1', 5, 'admin', NOW(), 'admin', NOW()), -- 5000 - 700 = 4300
-(DATE_SUB(NOW(), INTERVAL 15 DAY), 'Deposit', 1500.00, 5800.00, '1', 5, 'admin', NOW(), 'admin', NOW()),   -- 4300 + 1500 = 5800
-(DATE_SUB(NOW(), INTERVAL 16 DAY), 'Withdrawal', 600.00, 5200.00, '1', 5, 'admin', NOW(), 'admin', NOW()); -- 5800 - 600 = 5200
+('2024-10-14 10:00:00', 'Withdrawal', 700.00, 4300.00, '1', 5, 'admin', NOW()), -- 5000 - 700 = 4300
+('2024-10-15 10:00:00', 'Deposit', 1500.00, 5800.00, '1', 5, 'admin', NOW()),   -- 4300 + 1500 = 5800
+('2024-10-27 10:00:00', 'Withdrawal', 600.00, 5200.00, '1', 5, 'admin', NOW()); -- 5800 - 600 = 5200
+
+
+CREATE DATABASE IF NOT EXISTS neoris_integration_test;
+
+CREATE TABLE IF NOT EXISTS neoris_integration_test.person LIKE neoris_test.person;
+CREATE TABLE IF NOT EXISTS neoris_integration_test.client LIKE neoris_test.client;
+CREATE TABLE IF NOT EXISTS neoris_integration_test.account LIKE neoris_test.account;
+CREATE TABLE IF NOT EXISTS neoris_integration_test.movements LIKE neoris_test.movements;
+
+INSERT INTO neoris_integration_test.person SELECT * FROM neoris_test.person;
+INSERT INTO neoris_integration_test.client SELECT * FROM neoris_test.client;
+INSERT INTO neoris_integration_test.account SELECT * FROM neoris_test.account;
+INSERT INTO neoris_integration_test.movements SELECT * FROM neoris_test.movements;
+
+GRANT ALL PRIVILEGES ON neoris_integration_test.* TO 'user'@'%' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
