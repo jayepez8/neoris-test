@@ -11,7 +11,6 @@ import java.util.Collection;
 
 import static com.neoris.transactions.client.common.TransactionsConstants.V1_API_VERSION;
 
-
 /**
  * @author jyepez on 19/7/2024
  */
@@ -41,15 +40,14 @@ public class MovementController {
     }
 
     @PatchMapping("updateAmount")
-    public ResponseEntity<MovementVo> updateAmount(@RequestParam Integer movementID,@RequestParam Double amount){
-        MovementVo response =this.movementService.updateAmount(movementID,amount);
+    public ResponseEntity<MovementVo> updateAmount(@RequestParam String accountNumber,@RequestParam Double amount){
+        MovementVo response =this.movementService.updateAmount(accountNumber,amount);
         return ResponseEntity.ok().body(response);
     }
 
     @DeleteMapping()
-    public ResponseEntity<?> delete(@RequestParam Integer movementID){
-        this.movementService.delete(movementID);
+    public ResponseEntity<?> delete(@RequestParam String accountNumber){
+        this.movementService.delete(accountNumber);
         return ResponseEntity.ok().build();
     }
 }
-

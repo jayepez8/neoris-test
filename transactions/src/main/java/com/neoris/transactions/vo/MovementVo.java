@@ -28,4 +28,7 @@ public class MovementVo {
     private String name;
     private String  date;
     private String accountType;
+
+    @NotEmpty(message = "User who creates the record is required")
+    private String createdBy;
 }

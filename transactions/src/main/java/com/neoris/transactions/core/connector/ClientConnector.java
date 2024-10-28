@@ -6,6 +6,7 @@ import com.neoris.transactions.client.exception.ExistException;
 import com.neoris.transactions.client.exception.NotFoundException;
 import com.neoris.transactions.vo.ClientVo;
 import com.neoris.transactions.vo.ErrorResponseVo;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
@@ -23,9 +24,12 @@ import static com.neoris.transactions.client.common.TransactionsConstants.*;
 @Component
 public class ClientConnector implements IClientConnector {
 
+    @Value("${domain.name}")
+    public String DOMAIN_NAME;
+
     @Override
     public ClientVo getByID(String clientID) {
-        String url = DOMAIN_CLIENT.concat(URL_GET_CLIENT_BY_ID).concat(clientID);
+        String url = getDomain().concat(URL_GET_CLIENT_BY_ID).concat(clientID);
         try {
             ResponseEntity<ClientVo> response = new RestTemplate().exchange(
                     url, HttpMethod.GET, null, new ParameterizedTypeReference<ClientVo>() {
@@ -39,7 +43,7 @@ public class ClientConnector implements IClientConnector {
 
     @Override
     public ClientVo getByIdentification(String identification) {
-        String url = DOMAIN_CLIENT.concat(URL_GET_CLIENT_BY_IDENTIFICATION).concat(identification);
+        String url = getDomain().concat(URL_GET_CLIENT_BY_IDENTIFICATION).concat(identification);
         try {
             ResponseEntity<ClientVo> response = new RestTemplate().exchange(
                     url, HttpMethod.GET, null, new ParameterizedTypeReference<ClientVo>() {
@@ -60,5 +64,9 @@ public class ClientConnector implements IClientConnector {
             throw new NotFoundException("Failed to parse error response: " + ex.getMessage());
         }
         throw new NotFoundException(errorResponse.getMessage());
+    }
+
+    private String getDomain(){
+        return "NO_SET".equals(DOMAIN_NAME) ? DOMAIN_CLIENT : DOMAIN_NAME;
     }
 }

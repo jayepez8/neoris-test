@@ -27,7 +27,7 @@ public class AccountVo {
     private String identification;
     private String nameClient;
     private Integer clientId;
-    @NotEmpty(message = "Created By is required")
+    @NotEmpty(message = "User who creates the record is required")
     private String createdBy;
 
 }

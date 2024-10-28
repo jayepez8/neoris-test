@@ -20,7 +20,7 @@ public interface IMovementRepository extends JpaRepository<MovementEntity,Intege
 
     Optional<MovementEntity> findTopByAccountAccountNumberAndStatusIsTrueOrderByDateDesc(String accountNumber);
 
-    @Query("SELECT m FROM MovementEntity m WHERE m.account.accountNumber = :accountNumber AND m.date BETWEEN :startDate AND :endDate AND m.status = true" )
+    @Query("SELECT m FROM MovementEntity m WHERE m.account.accountNumber = :accountNumber AND m.date BETWEEN :startDate AND :endDate AND m.status = true order by m.date desc" )
     Collection<MovementEntity> findByAccountNumberAndDateRange(@Param("accountNumber") String accountNumber,
                                                                @Param("startDate") LocalDateTime startDate,
                                                                @Param("endDate") LocalDateTime endDate);

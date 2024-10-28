@@ -21,7 +21,7 @@ public interface IMovementService {
 
     MovementVo create(MovementVo movementVo);
 
-    MovementVo updateAmount(Integer movementID, Double amount);
+    MovementVo updateAmount(String accountNumber, Double amount);
 
-    void delete(Integer movementID);
+    void delete(String accountNumber);
 }

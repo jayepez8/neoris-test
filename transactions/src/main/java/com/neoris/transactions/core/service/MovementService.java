@@ -87,29 +87,40 @@ public class MovementService implements IMovementService {
     }
 
     @Override
-    public MovementVo updateAmount(Integer movementID, Double amount) {
-        MovementEntity existingMovement = findByID(movementID);
+    public MovementVo updateAmount(String accountNumber, Double amount) {
+        MovementEntity lastMovement = getLastMovement(accountNumber);
+        if(Objects.isNull(lastMovement)){
+            throw new ExistException("It cannot be modified because no movements are recorded.");
+        }
         try {
-            existingMovement.setAmount(amount);
-            MovementEntity movementUpdated = this.movementRepository.save(existingMovement);
+            lastMovement.setMovementType(amount > 0 ? DEPOSIT : DEBIT);
+            lastMovement.setBalance(calculateBalance(MovementVo.builder()
+                    .amount((lastMovement.getAmount()*-1) + amount).
+                    accountNumber(accountNumber)
+                    .build()));
+            lastMovement.setAmount(amount);
+            lastMovement.setModifiedBy("user02");
+            lastMovement.setModifiedDate(LocalDateTime.now());
+            MovementEntity movementUpdated = this.movementRepository.save(lastMovement);
             return buildMovementResponse(movementUpdated);
+        }catch (ExistException e){
+            throw new ExistException(e.getMessage());
         }catch (Exception e){
             throw new PersistException("A problem occurred, the movement could not be updated");
         }
     }
 
     @Override
-    public void delete(Integer movementID) {
-        MovementEntity existingMovement = findByID(movementID);
+    public void delete(String accountNumber) {
+        MovementEntity lastMovement = getLastMovement(accountNumber);
+        if(Objects.isNull(lastMovement)){
+            throw new ExistException("It cannot be deleted because no movements are recorded.");
+        }
         try {
-            existingMovement.setStatus(Boolean.FALSE);
-            MovementEntity lastMovement = getLastMovement(existingMovement.getAccount().getAccountNumber());
-            if(Objects.nonNull(lastMovement)){
-                double newBalance = lastMovement.getBalance() + (existingMovement.getAmount() * -1);
-                lastMovement.setBalance(newBalance);
-                this.movementRepository.save(lastMovement);
-            }
-            this.movementRepository.save(existingMovement);
+            lastMovement.setStatus(Boolean.FALSE);
+            lastMovement.setModifiedBy("user02");
+            lastMovement.setModifiedDate(LocalDateTime.now());
+            this.movementRepository.save(lastMovement);
         }catch (Exception e){
             throw new PersistException("A problem occurred, movement could not be deleted");
         }
