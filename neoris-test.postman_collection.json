@@ -1,0 +1,628 @@
+{
+	"info": {
+		"_postman_id": "ae70da82-06f8-4af5-9575-33d49b42239f",
+		"name": "neoris-test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20496305"
+	},
+	"item": [
+		{
+			"name": "neoris-client",
+			"item": [
+				{
+					"name": "person",
+					"item": [
+						{
+							"name": "getAll",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8081/person/api/v1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"person",
+										"api",
+										"v1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "client",
+					"item": [
+						{
+							"name": "getAll",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8081/client/api/v1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"client",
+										"api",
+										"v1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "findByID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8081/client/api/v1/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"client",
+										"api",
+										"v1",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "findByIdentification",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8081/client/api/v1/findByIdentification?identification=ID1234511",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"client",
+										"api",
+										"v1",
+										"findByIdentification"
+									],
+									"query": [
+										{
+											"key": "identification",
+											"value": "ID1234511"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8081/client/api/v1?identification=ID12348",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"client",
+										"api",
+										"v1"
+									],
+									"query": [
+										{
+											"key": "identification",
+											"value": "ID12348"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Nicolle Pozo\",\r\n    \"address\": \"112 Main St\",\r\n    \"phone\": \"555-4213\",\r\n    \"password\": \"Password02@\",\r\n    \"identification\": \"ID123451\",\r\n    \"createdBy\": \"admin\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8081/client/api/v1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"client",
+										"api",
+										"v1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Jonathan Andres Yépez\",\r\n    \"identification\": \"ID1234511\",\r\n    \"address\": \"122 Main St\",\r\n    \"phone\": \"555-4213\",\r\n    \"password\": \"Password02@\",\r\n    \"status\": true,\r\n    \"createdBy\": \"admin\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8081/client/api/v1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8081",
+									"path": [
+										"client",
+										"api",
+										"v1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "neoris-transactions",
+			"item": [
+				{
+					"name": "account",
+					"item": [
+						{
+							"name": "getAll",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8082/account/api/v1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"account",
+										"api",
+										"v1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "findByAccountNumber",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8082/account/api/v1/ACC1001",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"account",
+										"api",
+										"v1",
+										"ACC1001"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"accountType\":\"Savings\",\r\n    \"initialBalance\": 0,\r\n    \"identification\": \"ID123451\",\r\n    \"createdBy\": \"admin\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8082/account/api/v1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"account",
+										"api",
+										"v1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{    \r\n    \"accountType\": \"Ahorros\",\r\n    \"initialBalance\": 9999.1,\r\n    \"clientId\": \"3\",\r\n    \"identification\": \"ID123451\",\r\n    \"createdBy\": \"admin\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8082/account/api/v1?accountNumber=ACC2390",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"account",
+										"api",
+										"v1"
+									],
+									"query": [
+										{
+											"key": "accountNumber",
+											"value": "ACC2390"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updateAccountType",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{    \r\n    \"accountType\": \"Ahorros\",\r\n    \"initialBalance\": 9999.0,\r\n    \"clientId\": \"1\",\r\n    \"identification\": \"ID12346\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8082/account/api/v1/updateAccountType?accountNumber=ACC4741&accountType=Corriente",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"account",
+										"api",
+										"v1",
+										"updateAccountType"
+									],
+									"query": [
+										{
+											"key": "accountNumber",
+											"value": "ACC4741"
+										},
+										{
+											"key": "accountType",
+											"value": "Corriente"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updateInitialBalance",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{    \r\n    \"accountType\": \"Ahorros\",\r\n    \"initialBalance\": 9999.0,\r\n    \"clientId\": \"1\",\r\n    \"identification\": \"ID12346\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8082/account/api/v1/updateInitialBalance?accountNumber=ACC4741&initialBalance=5656",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"account",
+										"api",
+										"v1",
+										"updateInitialBalance"
+									],
+									"query": [
+										{
+											"key": "accountNumber",
+											"value": "ACC4741"
+										},
+										{
+											"key": "initialBalance",
+											"value": "5656"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{    \r\n    \"accountType\": \"Ahorros\",\r\n    \"initialBalance\": 9999.0,\r\n    \"clientId\": \"1\",\r\n    \"identification\": \"ID12346\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8082/account/api/v1?accountNumber=ACC4741",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"account",
+										"api",
+										"v1"
+									],
+									"query": [
+										{
+											"key": "accountNumber",
+											"value": "ACC4741"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "movement",
+					"item": [
+						{
+							"name": "getAll",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8082/movement/api/v1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"movement",
+										"api",
+										"v1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "findByAccountNumber",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8082/movement/api/v1/findByAccountNumber/ACC1005",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"movement",
+										"api",
+										"v1",
+										"findByAccountNumber",
+										"ACC1005"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"accountNumber\":\"ACC0322\",\r\n    \"amount\": -100,\r\n    \"createdBy\":\"user01\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8082/movement/api/v1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"movement",
+										"api",
+										"v1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updateAmount",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8082/movement/api/v1/updateAmount?accountNumber=ACC1005&amount=200",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"movement",
+										"api",
+										"v1",
+										"updateAmount"
+									],
+									"query": [
+										{
+											"key": "accountNumber",
+											"value": "ACC1005"
+										},
+										{
+											"key": "amount",
+											"value": "200"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"accountNumber\":\"ACC1005\",\r\n    \"amount\": -100\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8082/movement/api/v1?accountNumber=ACC1005",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"movement",
+										"api",
+										"v1"
+									],
+									"query": [
+										{
+											"key": "accountNumber",
+											"value": "ACC1005"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "report",
+					"item": [
+						{
+							"name": "accountStatus",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8082/report/api/v1?identification=ID00002&startDate=01/10/2023&endDate=27/10/2024",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8082",
+									"path": [
+										"report",
+										"api",
+										"v1"
+									],
+									"query": [
+										{
+											"key": "identification",
+											"value": "ID00002"
+										},
+										{
+											"key": "startDate",
+											"value": "01/10/2023"
+										},
+										{
+											"key": "endDate",
+											"value": "27/10/2024"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
